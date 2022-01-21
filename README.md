@@ -1,4 +1,5 @@
 # neu-timer
+nuemorphic web timer
 
 ## Project setup
 ```
