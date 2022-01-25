@@ -1,5 +1,5 @@
 <template>
-  <input :value="modelValue" @input="onInput" :disabled="disabled" :min="min" :max="max" type="number"/>
+  <input :value="valueCopy" @input="onInput" :disabled="disabled" :max="max" type="number"/>
 </template>
 
 <script>
@@ -23,21 +23,32 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      valueCopy: this.modelValue
+    };
+  },
   methods: {
     onInput(event) {
-      debugger;
       let value = event.target.value;
       value = value.replace(/\D/g, '');
 
       if (value !== '') {
-        value = parseInt(value, 10);
-        if (this.max && value > this.max) {
-          value = this.max;        
-        } 
-
-        this.$emit('update:modelValue', value);
+        this.valueCopy = parseInt(value, 10);
+        if (this.max && this.valueCopy > this.max) {
+          this.valueCopy = this.max;        
+        } else {
+          this.valueCopy = value;
+        }
       }
+
+      this.$emit('update:modelValue', this.valueCopy);
     }
   },
+  watch: {
+    modelValue(newVal) {
+      this.valueCopy = newVal;
+    }
+  }
 }
 </script>
