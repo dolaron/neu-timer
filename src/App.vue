@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   align-items: center;

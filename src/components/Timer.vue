@@ -1,14 +1,18 @@
 <template>
   <div class="timer">
     <div class="timer__wrapper">
-      <input v-model="minutes" class="input timer__minutes" type="Number"/>
-      <input v-model="seconds" class="input timer__seconds" type="Number"/>
+      <div class="timer__input__wrapper">
+        <TimerInput v-model="minutes" class="input timer__minutes" type="number" :max="59"/>
+        <TimerInput v-model="seconds" class="input timer__seconds" type="number" :max="59"/>
+      </div>
     </div>
-    <buttton class="timer__start" @click="start">Start Timer</buttton>
+    <button class="timer__start" @click="start">Start Timer</button>
   </div>
 </template>
 
 <script>
+import TimerInput from './TimerInput.vue';
+
 export default {
   name: 'Timer',
   data() {
@@ -37,7 +41,6 @@ export default {
     },
     seconds: {
       get() {
-        debugger;
         if (this.isRunning) {
           return Math.round(((this.time / 60) - this.minutes) * 60);
         }
@@ -49,35 +52,34 @@ export default {
     },
   },
   methods: {
-    playSound() {
-      debugger;
-    },
     start() {
-      debugger;
-      this.time = (this.minutes * 60 + this.seconds)
+      this.time = (this.minutes * 60 + this.seconds);
 			this.isRunning = true;
 			if (!this.timer) {
         this.timer = setInterval(() => {
           if (this.time > 0) {
-						this.time--
+						this.time--;
 					} else {
-						clearInterval(this.timer)
-						this.reset()
+						clearInterval(this.timer);
+						this.reset();
 					}
-				}, 1000 )
+				}, 1000)
 			}
     },
-    stop () {
-			this.isRunning = false
-			clearInterval(this.timer)
-			this.timer = null
+    stop() {
+			this.isRunning = false;
+			clearInterval(this.timer);
+			this.timer = null;
 		},
-		reset () {
+		reset() {
 			this.stop()
-			this.time = 0
-			this.seconds = 0
-			this.minutes = 0
-		},
+			this.time = 0;
+			this.seconds = 0;
+			this.minutes = 0;
+		}
+  },
+  components: {
+    TimerInput
   }
 }
 </script>
@@ -103,14 +105,27 @@ export default {
     padding: 5px 10px;
     margin: 10px 0;
   }
+
+  &__input {
+    &__wrapper {
+      display: flex;
+    }
+  }
 }
 
 .input {
+  display: block;
   border: 0;
-  height: 100px;
-  font-size: 25px;
+  // height: 100px;
   text-align: center;
   background: transparent;
+  font-family: 'Poppins',sans-serif;
+  font-size: 250px;
+  color: rgb(234, 238, 247);
+  text-shadow: -8px -8px 12px rgba(255,255,255,0.4), 8px 8px 12px rgba(0,0,0,0.08);
+  caret-color:#262626;
+  outline: none;
+  max-width: 400px;
 }
 
 input[type=number]::-webkit-outer-spin-button {
