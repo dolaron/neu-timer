@@ -2,8 +2,10 @@
   <div class="timer">
     <div class="timer__wrapper">
       <div class="timer__input__wrapper">
-        <TimerInput v-model="minutes" class="input timer__minutes" type="number" :max="59"/>
-        <TimerInput v-model="seconds" class="input timer__seconds" type="number" :max="59"/>
+        <TimerInput v-model="minutes" class="input timer__minutes" :max="59"/>
+        <!-- <TimerButtons/> -->
+        <TimerInput v-model="seconds" class="input timer__seconds" :max="59"/>
+        <!-- <TimerButtons/> -->
       </div>
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
@@ -84,7 +86,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .timer {
   display: flex;
@@ -111,25 +112,5 @@ export default {
       display: flex;
     }
   }
-}
-
-.input {
-  display: block;
-  border: 0;
-  // height: 100px;
-  text-align: center;
-  background: transparent;
-  font-family: 'Poppins',sans-serif;
-  font-size: 250px;
-  color: rgb(234, 238, 247);
-  text-shadow: -8px -8px 12px rgba(255,255,255,0.4), 8px 8px 12px rgba(0,0,0,0.08);
-  caret-color:#262626;
-  outline: none;
-  max-width: 400px;
-}
-
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none; 
-  margin: 0; 
 }
 </style>

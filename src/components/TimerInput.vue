@@ -1,5 +1,5 @@
 <template>
-  <input :value="valueCopy" @input="onInput" :disabled="disabled" :max="max" type="number"/>
+  <input :value="valueCopy" @input="onInput" :disabled="disabled" :max="max" type="number" class="timer-input"/>
 </template>
 
 <script>
@@ -52,3 +52,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+
+input.timer-input {
+  display: block;
+  border: 0;
+  text-align: center;
+  background: transparent;
+  font-family: 'Poppins',sans-serif;
+  font-size: 250px;
+  color: rgb(234, 238, 247);
+  text-shadow: -8px -8px 12px rgba(255,255,255,0.4), 8px 8px 12px rgba(0,0,0,0.08);
+  caret-color:#262626;
+  outline: none;
+  max-width: 400px;
+
+  &[type=number]{
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button  {
+      display: none;
+    }
+  }
+}
+
+</style>
