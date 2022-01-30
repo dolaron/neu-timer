@@ -1,12 +1,10 @@
 <template>
   <div class="timer">
     <div class="timer__wrapper">
-      <div class="timer__input__wrapper">
         <TimerInput v-model="minutes" class="input timer__minutes" :max="59"/>
         <!-- <TimerButtons/> -->
         <TimerInput v-model="seconds" class="input timer__seconds" :max="59"/>
         <!-- <TimerButtons/> -->
-      </div>
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
   </div>
@@ -105,12 +103,6 @@ export default {
     border-radius: 5px;
     padding: 5px 10px;
     margin: 10px 0;
-  }
-
-  &__input {
-    &__wrapper {
-      display: flex;
-    }
   }
 }
 </style>
