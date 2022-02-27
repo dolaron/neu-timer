@@ -1,10 +1,10 @@
 <template>
   <div class="timer">
     <div class="timer__wrapper">
-        <TimerInput v-model="minutes" class="input timer__minutes" :max="59"/>
-        <!-- <TimerButtons/> -->
-        <TimerInput v-model="seconds" class="input timer__seconds" :max="59"/>
-        <!-- <TimerButtons/> -->
+      <TimerInput v-model="minutes" class="input timer__minutes" :max="59"/>
+      <TimerButtons/>
+      <TimerInput v-model="seconds" class="input timer__seconds" :max="59"/>
+      <TimerButtons/>
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
   </div>
@@ -12,6 +12,7 @@
 
 <script>
 import TimerInput from './TimerInput.vue';
+import TimerButtons from './TimerButtons.vue';
 
 export default {
   name: 'Timer',
@@ -55,6 +56,7 @@ export default {
     start() {
       this.time = (this.minutes * 60 + this.seconds);
 			this.isRunning = true;
+
 			if (!this.timer) {
         this.timer = setInterval(() => {
           if (this.time > 0) {
@@ -72,14 +74,15 @@ export default {
 			this.timer = null;
 		},
 		reset() {
-			this.stop()
+			this.stop();
 			this.time = 0;
 			this.seconds = 0;
 			this.minutes = 0;
 		}
   },
   components: {
-    TimerInput
+    TimerInput,
+    TimerButtons
   }
 }
 </script>

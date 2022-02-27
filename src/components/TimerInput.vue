@@ -54,7 +54,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 input.timer-input {
   display: block;
   border: 0;
@@ -75,5 +74,4 @@ input.timer-input {
     }
   }
 }
-
 </style>
