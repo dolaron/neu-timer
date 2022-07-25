@@ -1,10 +1,10 @@
 <template>
   <div class="timer">
     <div class="timer__wrapper">
-      <TimerInput v-model="minutes" class="input timer__minutes" :max="59"/>
-      <TimerButtons/>
-      <TimerInput v-model="seconds" class="input timer__seconds" :max="59"/>
-      <TimerButtons/>
+      <TimerInput v-model="minutes" class="input timer__minutes" :max="max" />
+      <TimerButtons @add="addMinutes" @addHold="addMinutes(true)" @substract="removeMinutes" @substractHold="removeMinute(true)"/>
+      <TimerInput v-model="seconds" class="input timer__seconds" :max="max" />
+      <TimerButtons />
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
   </div>
@@ -25,7 +25,9 @@ export default {
       
       isRunning: false,
       time: 0,
-      timer: null
+      timer: null,
+      
+      max: 59
     };
   },
   computed: {
@@ -53,6 +55,23 @@ export default {
     },
   },
   methods: {
+    addMinutes(hold = false) {
+      if (this.minutesData < this.max)
+        this.minutesData += 1;
+
+      if (hold) {
+        setTimeout(function() {
+          this.minutes += 1;
+      }, 500);
+      }
+    },
+    // https://stackoverflow.com/questions/11624078/repeating-settimeout DELTA TIMER
+
+    removeMinutes() {
+      if (this.minutesData > 0) {
+        this.minutesData -= 1;
+      }
+    },
     start() {
       this.time = (this.minutes * 60 + this.seconds);
 			this.isRunning = true;

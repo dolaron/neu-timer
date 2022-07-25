@@ -1,7 +1,7 @@
 <template>
   <div class="timer-buttons">
-    <button @click="emit('add')" class="timer-buttons__add"></button>
-    <button @click="emit('substract')" class="timer-buttons__substract"></button>
+    <button @mousedown="$emit('addHold')" @click="$emit('add')" class="timer-buttons__add"></button>
+    <button @mousedown="$emit('substractHold')" @click="$emit('substract')" class="timer-buttons__substract"></button>
   </div>
 </template>
 
