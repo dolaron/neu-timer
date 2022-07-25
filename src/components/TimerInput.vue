@@ -66,12 +66,19 @@ input.timer-input {
   caret-color:#262626;
   outline: none;
   max-width: 400px;
+  border-radius: 10px;
 
   &[type=number]{
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button  {
       display: none;
     }
+  }
+
+  &::selection {
+    color:gainsboro;
+    background: beige;
+    // width: calc(100% + 10%);
   }
 }
 </style>
