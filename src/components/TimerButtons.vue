@@ -1,13 +1,21 @@
 <template>
   <div class="timer-buttons">
-    <button @mousedown="$emit('addHold')" @click="$emit('add')" class="timer-buttons__add"></button>
-    <button @mousedown="$emit('substractHold')" @click="$emit('substract')" class="timer-buttons__substract"></button>
+    <button v-longpress="longClickEvent" @click="$emit('add')" class="timer-buttons__add"></button>
+    <button v-longpress="longSubstract" @click="$emit('substract')" class="timer-buttons__substract"></button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TimerButtons'
+  name: 'TimerButtons',
+  methods: {
+    longClickEvent() {
+      this.$emit('add');
+    },
+    longSubstract() {
+      this.$emit('substract');
+    }
+  }
 }
 
 </script>
