@@ -1,9 +1,9 @@
 <template>
-  <div class="timer">
-    <div class="timer__wrapper">
-      <TimerInput v-model="minutes" class="input timer__minutes" :max="max" :disabled="isRunning" />
+  <div class="timer" :style="progressStyle">
+    <div class="timer__wrapper" :data-width="progress">
+      <TimerInput v-model="minutes" :max="max" :disabled="isRunning" />
       <TimerButtons @add="addMinutes" @substract="substractMinutes" />
-      <TimerInput v-model="seconds" class="input timer__seconds" :max="max" :disabled="isRunning"/>
+      <TimerInput v-model="seconds" :max="max" :disabled="isRunning"/>
       <TimerButtons @add="addSeconds" @substract="substractSeconds" />
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
@@ -25,6 +25,7 @@ export default {
       secondsData: 0,
 
       time: 0,
+      startTime: 0,
       timer: null,
       isRunning: false,
       isPaused: false,
@@ -55,8 +56,29 @@ export default {
         this.secondsData = parseInt(value);
       }
     },
+    progress() {
+      if (this.time) {
+        return (this.time * 100) / this.startTime;
+      }
+      return 0;
+    },
+    progressStyle() {
+      return {
+        '--progress-value': `${this.progress}%`,
+        '--display-pseudo-elem': this.progress ? 'flex' : 'none'
+      };
+    }
   },
   methods: {
+    setStartTime() {
+      if (this.isPaused) {
+        if (this.minutes === this.minutesData && this.seconds === this.secondsData) {
+          this.startTime = this.time;
+        }
+        return;
+      }
+      this.startTime = (this.minutesData * 60 + this.secondsData);
+    },
     setMinutesAndSecondsIfPaused() {
       if (this.isPaused) {
         this.minutesData = this.minutes;
@@ -73,6 +95,7 @@ export default {
         this.setMinutesAndSecondsIfPaused();
         this.minutesData ++;
         this.setTime();
+        this.setStartTime();
       }
     },
     substractMinutes() {
@@ -80,6 +103,7 @@ export default {
         this.setMinutesAndSecondsIfPaused();
         this.minutesData --;
         this.setTime();
+        this.setStartTime();
       }
     },
     addSeconds() {
@@ -87,6 +111,7 @@ export default {
         this.setMinutesAndSecondsIfPaused();
         this.secondsData ++;
         this.setTime();
+        this.setStartTime();
       }
     },
     substractSeconds() {
@@ -94,10 +119,12 @@ export default {
         this.setMinutesAndSecondsIfPaused();
         this.secondsData --;
         this.setTime();
+        this.setStartTime();
       }
     },
     start() {
       this.setTime();
+      this.setStartTime();
       this.isRunning = true;
       this.isPaused = false;
 
@@ -105,6 +132,7 @@ export default {
         this.timer = setInterval(() => {
           if (this.time > 0) {
 						this.time --;
+            document.title = `${Math.round(Math.floor(this.time / 60))}:${Math.round((((this.time / 60) - this.minutes) * 60))}`;
 					} else {
 						clearInterval(this.timer);
 						this.reset();
@@ -147,11 +175,31 @@ export default {
   flex-direction: column;
 
   &__wrapper {
+    position: relative;
     display: flex;
     padding: 55px 20px;
     box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
     border-radius: 25px;
     margin: 0 10vw;
+
+    &:before,
+    &:after {
+      position: absolute;
+      display: var(--display-pseudo-elem);
+      content: '';
+      transition: width 0.2s ease; // TODO change from width to scale or something else
+    }
+
+    &::before {
+      bottom: 25px;
+      left: 5%;
+      height: 10%;
+      background: rgb(235, 239, 246);
+      border-radius: 25px;
+      width: calc(var(--progress-value) - 11%);
+      box-shadow: 9.91px 9.91px 15px #D6D9E0, -9.91px -9.91px 15px #FFFFFF;
+      min-width: 0;
+    }
   }
 
   &__start {

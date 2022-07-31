@@ -22,9 +22,13 @@ export default {
 
 <style lang="scss">
 .timer-buttons {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-self: center;
+
+  @media (min-width: 600px) {
+    display: flex;
+  }
 
   &__add,
   &__substract {
