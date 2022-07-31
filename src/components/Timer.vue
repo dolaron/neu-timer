@@ -8,6 +8,7 @@
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
     <button class="timer__pause" @click="pause">Pause Timer</button>
+    <button class="timer__reset" @click="reset">Reset Timer</button>
   </div>
 </template>
 
@@ -63,32 +64,34 @@ export default {
       }
     },
     setTime() {
-      this.time = (this.minutesData * 60 + this.secondsData);
+      if (!this.isRunning) {
+        this.time = (this.minutesData * 60 + this.secondsData);
+      }
     },
     addMinutes() {
-      this.setMinutesAndSecondsIfPaused();
       if (this.minutesData < this.max && !this.isRunning) {
+        this.setMinutesAndSecondsIfPaused();
         this.minutesData ++;
       }
       this.setTime();
     },
     substractMinutes() {
-      this.setMinutesAndSecondsIfPaused();
       if (this.minutesData > 0 && !this.isRunning) {
+        this.setMinutesAndSecondsIfPaused();
         this.minutesData --;
       }
       this.setTime();
     },
     addSeconds() {
-      this.setMinutesAndSecondsIfPaused();
       if (this.secondsData < this.max && !this.isRunning) {
+        this.setMinutesAndSecondsIfPaused();
         this.secondsData ++;
       }
       this.setTime();
     },
     substractSeconds() {
-      this.setMinutesAndSecondsIfPaused();
       if (this.secondsData > 0 && !this.isRunning) {
+        this.setMinutesAndSecondsIfPaused();
         this.secondsData --;
       }
       this.setTime();
