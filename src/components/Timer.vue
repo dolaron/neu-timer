@@ -129,6 +129,8 @@ export default {
     pause() {
       this.stop();
       this.isPaused = true;
+      this.minutesData = this.minutes;
+      this.secondsData = this.seconds;
     },
 		reset() {
 			this.stop();
