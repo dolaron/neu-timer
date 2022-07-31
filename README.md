@@ -27,3 +27,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Delta Timer
 https://stackoverflow.com/questions/11624078/repeating-settimeout
+
+### Long press
+https://blog.logrocket.com/building-a-long-press-directive-in-vue-3408d60fb511/ - Base
+
+https://stackoverflow.com/questions/48442194/javascript-increment-value-faster-with-mouse-hold - Modification with setInterval()
