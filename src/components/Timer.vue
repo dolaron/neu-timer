@@ -58,7 +58,6 @@ export default {
       if (this.minutesData < this.max)
         this.minutesData ++;
     },
-    // https://stackoverflow.com/questions/11624078/repeating-settimeout DELTA TIMER
     substractMinutes() {
       if (this.minutesData > 0) {
         this.minutesData --;
