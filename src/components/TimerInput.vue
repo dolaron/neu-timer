@@ -76,7 +76,7 @@ input.timer-input {
   }
 
   &::selection {
-    color:gainsboro;
+    color: gainsboro;
     background: beige;
     // width: calc(100% + 10%);
   }
