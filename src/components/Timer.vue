@@ -22,8 +22,6 @@ export default {
       hoursData: 0,
       minutesData: 10,
       secondsData: 0,
-      isMinutesChanged: false,
-      isSecondsChanged: false,
 
       time: 0,
       timer: null,
@@ -43,9 +41,6 @@ export default {
       },
       set(value) {
         this.minutesData = parseInt(value);
-        if (this.isPaused) {
-          this.isMinutesChanged = true;
-        }
       }
     },
     seconds: {
@@ -57,9 +52,6 @@ export default {
       },
       set(value) {
         this.secondsData = parseInt(value);
-        if (this.isPaused) {
-          this.isSecondsChanged = true;
-        }
       }
     },
   },
@@ -70,45 +62,41 @@ export default {
         this.secondsData = this.seconds;
       }
     },
-    setTimeIfPaused() {
-      if (this.isPaused) {
-        this.time = (this.minutesData * 60 + this.secondsData);
-      }
+    setTime() {
+      this.time = (this.minutesData * 60 + this.secondsData);
     },
     addMinutes() {
       this.setMinutesAndSecondsIfPaused();
       if (this.minutesData < this.max && !this.isRunning) {
         this.minutesData ++;
       }
-      this.setTimeIfPaused();
+      this.setTime();
     },
     substractMinutes() {
       this.setMinutesAndSecondsIfPaused();
       if (this.minutesData > 0 && !this.isRunning) {
         this.minutesData --;
       }
-      this.setTimeIfPaused();
+      this.setTime();
     },
     addSeconds() {
       this.setMinutesAndSecondsIfPaused();
       if (this.secondsData < this.max && !this.isRunning) {
         this.secondsData ++;
       }
-      this.setTimeIfPaused();
+      this.setTime();
     },
     substractSeconds() {
       this.setMinutesAndSecondsIfPaused();
       if (this.secondsData > 0 && !this.isRunning) {
         this.secondsData --;
       }
-      this.setTimeIfPaused();
+      this.setTime();
     },
     start() {
-      this.time = (this.minutesData * 60 + this.secondsData); // TODO check if should be parsed to integer
-      this.isMinutesChanged = false;
-      this.isSecondsChanged = false;
-			
+      this.setTime();
       this.isRunning = true;
+      this.isPaused = false;
 
 			if (!this.timer) {
         this.timer = setInterval(() => {
@@ -127,10 +115,11 @@ export default {
 			this.timer = null;
 		},
     pause() {
-      this.stop();
-      this.isPaused = true;
-      this.minutesData = this.minutes;
-      this.secondsData = this.seconds;
+      if (!this.isPaused) {
+        this.stop();
+        this.isPaused = true;
+        this.setMinutesAndSecondsIfPaused();
+      }
     },
 		reset() {
 			this.stop();
