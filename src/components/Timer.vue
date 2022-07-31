@@ -43,8 +43,6 @@ export default {
       },
       set(value) {
         this.minutesData = parseInt(value);
-        this.isMinutesChanged = false;
-        
         if (this.isPaused) {
           this.isMinutesChanged = true;
         }
@@ -53,14 +51,12 @@ export default {
     seconds: {
       get() {
         if (this.isRunning || this.isPaused) {
-          return Math.round(((this.time / 60) - this.minutes) * 60); // TODO if should be parsed to integer
+          return Math.round(((this.time / 60) - this.minutes) * 60); // TODO check if should be parsed to integer
         }
         return parseInt(this.secondsData);
       },
       set(value) {
         this.secondsData = parseInt(value);
-        this.isSecondsChanged = false;
-
         if (this.isPaused) {
           this.isSecondsChanged = true;
         }
@@ -68,30 +64,47 @@ export default {
     },
   },
   methods: {
+    setMinutesAndSecondsIfPaused() {
+      if (this.isPaused) {
+        this.minutesData = this.minutes;
+        this.secondsData = this.seconds;
+      }
+    },
+    setTimeIfPaused() {
+      if (this.isPaused) {
+        this.time = (this.minutesData * 60 + this.secondsData);
+      }
+    },
     addMinutes() {
-      if (this.minutesData < this.max) {
+      this.setMinutesAndSecondsIfPaused();
+      if (this.minutesData < this.max && !this.isRunning) {
         this.minutesData ++;
       }
+      this.setTimeIfPaused();
     },
     substractMinutes() {
-      if (this.minutesData > 0) {
+      this.setMinutesAndSecondsIfPaused();
+      if (this.minutesData > 0 && !this.isRunning) {
         this.minutesData --;
       }
+      this.setTimeIfPaused();
     },
     addSeconds() {
-      if (this.secondsData < this.max) {
+      this.setMinutesAndSecondsIfPaused();
+      if (this.secondsData < this.max && !this.isRunning) {
         this.secondsData ++;
       }
+      this.setTimeIfPaused();
     },
     substractSeconds() {
-      if (this.secondsData > 0) {
+      this.setMinutesAndSecondsIfPaused();
+      if (this.secondsData > 0 && !this.isRunning) {
         this.secondsData --;
       }
+      this.setTimeIfPaused();
     },
     start() {
-      const newMinutes = this.isMinutesChanged ? this.minutesData : this.minutes;
-      const newSeconds = this.isSecondsChanged ? this.secondsData: this.seconds;
-      this.time = (newMinutes * 60 + newSeconds); // TODO if should be parsed to integer
+      this.time = (this.minutesData * 60 + this.secondsData); // TODO check if should be parsed to integer
       this.isMinutesChanged = false;
       this.isSecondsChanged = false;
 			
@@ -120,8 +133,8 @@ export default {
 		reset() {
 			this.stop();
 			this.time = 0;
-			this.seconds = 0;
 			this.minutes = 0;
+      this.seconds = 0;
 		}
   },
   components: {
