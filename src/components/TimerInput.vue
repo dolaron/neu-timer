@@ -55,20 +55,24 @@ export default {
 
 <style lang="scss">
 input.timer-input {
-  display: block;
+  display: flex;
   border: 0;
   text-align: center;
   background: transparent;
-  font-family: 'Poppins',sans-serif;
-  font-size: 250px;
+  font-family: 'Poppins', sans-serif;
+  // font-size: 250px;
+  font-size: calc(60vw / 3);
+  // font-size: 30ch;
   color: rgb(234, 238, 247);
   text-shadow: -8px -8px 12px rgba(255,255,255,0.4), 8px 8px 12px rgba(0,0,0,0.08);
   caret-color:#262626;
   outline: none;
-  max-width: 400px;
+  width: 98%; // !! makes input width flexible !! 
+  padding: 1%;  // !! makes input width flexible !!
+  min-width: min-content;
   border-radius: 10px;
 
-  &[type=number]{
+  &[type=number] {
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button  {
       display: none;
@@ -78,7 +82,7 @@ input.timer-input {
   &::selection {
     color: gainsboro;
     background: beige;
-    // width: calc(100% + 10%);
+    width: calc(100% + 10%);
   }
 }
 </style>

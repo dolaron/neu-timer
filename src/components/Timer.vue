@@ -72,29 +72,29 @@ export default {
       if (this.minutesData < this.max && !this.isRunning) {
         this.setMinutesAndSecondsIfPaused();
         this.minutesData ++;
+        this.setTime();
       }
-      this.setTime();
     },
     substractMinutes() {
       if (this.minutesData > 0 && !this.isRunning) {
         this.setMinutesAndSecondsIfPaused();
         this.minutesData --;
+        this.setTime();
       }
-      this.setTime();
     },
     addSeconds() {
       if (this.secondsData < this.max && !this.isRunning) {
         this.setMinutesAndSecondsIfPaused();
         this.secondsData ++;
+        this.setTime();
       }
-      this.setTime();
     },
     substractSeconds() {
       if (this.secondsData > 0 && !this.isRunning) {
         this.setMinutesAndSecondsIfPaused();
         this.secondsData --;
+        this.setTime();
       }
-      this.setTime();
     },
     start() {
       this.setTime();
@@ -141,6 +141,7 @@ export default {
 <style lang="scss">
 .timer {
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -150,6 +151,7 @@ export default {
     padding: 55px 20px;
     box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
     border-radius: 25px;
+    margin: 0 10vw;
   }
 
   &__start {
