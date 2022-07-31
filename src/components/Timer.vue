@@ -56,6 +56,7 @@ export default {
         this.secondsData = parseInt(value);
       }
     },
+
     progress() {
       if (this.time) {
         return (this.time * 100) / this.startTime;
@@ -70,7 +71,18 @@ export default {
     }
   },
   methods: {
-    setStartTime() {
+    setTime() {
+      if (!this.isRunning) {
+        this.time = (this.minutesData * 60 + this.secondsData);
+      }
+    },
+    setMinutesAndSecondsIfPaused() {
+      if (this.isPaused) {
+        this.minutesData = this.minutes;
+        this.secondsData = this.seconds;
+      }
+    },
+    setStartProgressTime() {
       if (this.isPaused) {
         if (this.minutes === this.minutesData && this.seconds === this.secondsData) {
           this.startTime = this.time;
@@ -79,52 +91,38 @@ export default {
       }
       this.startTime = (this.minutesData * 60 + this.secondsData);
     },
-    setMinutesAndSecondsIfPaused() {
-      if (this.isPaused) {
-        this.minutesData = this.minutes;
-        this.secondsData = this.seconds;
-      }
-    },
-    setTime() {
+    calculateTime(callback) {
       if (!this.isRunning) {
-        this.time = (this.minutesData * 60 + this.secondsData);
+        this.setMinutesAndSecondsIfPaused();
+        callback();
+        this.setTime();
+        this.setStartProgressTime();
       }
     },
     addMinutes() {
-      if (this.minutesData < this.max && !this.isRunning) {
-        this.setMinutesAndSecondsIfPaused();
-        this.minutesData ++;
-        this.setTime();
-        this.setStartTime();
+      if (this.minutesData < this.max) {
+        this.calculateTime(() => { this.minutesData++; });
       }
     },
     substractMinutes() {
-      if (this.minutesData > 0 && !this.isRunning) {
-        this.setMinutesAndSecondsIfPaused();
-        this.minutesData --;
-        this.setTime();
-        this.setStartTime();
+      if (this.minutesData > 0) {
+        this.calculateTime(() => { this.minutesData--; });
       }
     },
     addSeconds() {
-      if (this.secondsData < this.max && !this.isRunning) {
-        this.setMinutesAndSecondsIfPaused();
-        this.secondsData ++;
-        this.setTime();
-        this.setStartTime();
+      if (this.secondsData < this.max) {
+        this.calculateTime(() => { this.secondsData++; });
       }
     },
     substractSeconds() {
-      if (this.secondsData > 0 && !this.isRunning) {
-        this.setMinutesAndSecondsIfPaused();
-        this.secondsData --;
-        this.setTime();
-        this.setStartTime();
+      if (this.secondsData > 0) {
+        this.calculateTime(() => { this.secondsData--; });
       }
     },
+
     start() {
       this.setTime();
-      this.setStartTime();
+      this.setStartProgressTime();
       this.isRunning = true;
       this.isPaused = false;
 
@@ -187,7 +185,7 @@ export default {
       position: absolute;
       display: var(--display-pseudo-elem);
       content: '';
-      transition: width 0.2s ease; // TODO change from width to scale or something else
+      transition: width 0.2s ease-out; // TODO change from width to scale or something else
     }
 
     &::before {
