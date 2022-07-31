@@ -7,6 +7,7 @@
       <TimerButtons @add="addSeconds" @substract="substractSeconds" />
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
+    <button class="timer__pause" @click="pause">Pause Timer</button>
   </div>
 </template>
 
@@ -21,10 +22,13 @@ export default {
       hoursData: 0,
       minutesData: 10,
       secondsData: 0,
-      
-      isRunning: false,
+      isMinutesChanged: false,
+      isSecondsChanged: false,
+
       time: 0,
       timer: null,
+      isRunning: false,
+      isPaused: false,
       
       max: 59
     };
@@ -32,31 +36,42 @@ export default {
   computed: {
     minutes: {
       get() {
-        if (this.isRunning) {
+        if (this.isRunning || this.isPaused) {
           return parseInt(this.time / 60);
         }
-        return this.minutesData;
+        return parseInt(this.minutesData);
       },
       set(value) {
-        this.minutesData = value
+        this.minutesData = parseInt(value);
+        this.isMinutesChanged = false;
+        
+        if (this.isPaused) {
+          this.isMinutesChanged = true;
+        }
       }
     },
     seconds: {
       get() {
-        if (this.isRunning) {
-          return Math.round(((this.time / 60) - this.minutes) * 60);
+        if (this.isRunning || this.isPaused) {
+          return Math.round(((this.time / 60) - this.minutes) * 60); // TODO if should be parsed to integer
         }
         return parseInt(this.secondsData);
       },
       set(value) {
         this.secondsData = parseInt(value);
+        this.isSecondsChanged = false;
+
+        if (this.isPaused) {
+          this.isSecondsChanged = true;
+        }
       }
     },
   },
   methods: {
     addMinutes() {
-      if (this.minutesData < this.max)
+      if (this.minutesData < this.max) {
         this.minutesData ++;
+      }
     },
     substractMinutes() {
       if (this.minutesData > 0) {
@@ -74,13 +89,18 @@ export default {
       }
     },
     start() {
-      this.time = (this.minutes * 60 + this.seconds);
-			this.isRunning = true;
+      const newMinutes = this.isMinutesChanged ? this.minutesData : this.minutes;
+      const newSeconds = this.isSecondsChanged ? this.secondsData: this.seconds;
+      this.time = (newMinutes * 60 + newSeconds); // TODO if should be parsed to integer
+      this.isMinutesChanged = false;
+      this.isSecondsChanged = false;
+			
+      this.isRunning = true;
 
 			if (!this.timer) {
         this.timer = setInterval(() => {
           if (this.time > 0) {
-						this.time--;
+						this.time --;
 					} else {
 						clearInterval(this.timer);
 						this.reset();
@@ -93,6 +113,10 @@ export default {
 			clearInterval(this.timer);
 			this.timer = null;
 		},
+    pause() {
+      this.stop();
+      this.isPaused = true;
+    },
 		reset() {
 			this.stop();
 			this.time = 0;
