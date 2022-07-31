@@ -4,7 +4,7 @@
       <TimerInput v-model="minutes" class="input timer__minutes" :max="max" />
       <TimerButtons @add="addMinutes" @substract="substractMinutes" />
       <TimerInput v-model="seconds" class="input timer__seconds" :max="max" />
-      <TimerButtons />
+      <TimerButtons @add="addSeconds" @substract="substractSeconds" />
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
   </div>
@@ -21,7 +21,6 @@ export default {
       hoursData: 0,
       minutesData: 10,
       secondsData: 0,
-      milisecondsData: 0,
       
       isRunning: false,
       time: 0,
@@ -63,6 +62,16 @@ export default {
     substractMinutes() {
       if (this.minutesData > 0) {
         this.minutesData --;
+      }
+    },
+    addSeconds() {
+      if (this.secondsData < this.max) {
+        this.secondsData ++;
+      }
+    },
+    substractSeconds() {
+      if (this.secondsData > 0) {
+        this.secondsData --;
       }
     },
     start() {
