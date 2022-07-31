@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
 const app = createApp(App);
 
@@ -31,7 +31,7 @@ app.directive('longpress', (el, binding, vNode) => {
     if (pressTimer === null) {
       pressTimer = setTimeout(function() {
         pressInterval = setInterval(function() {
-          handler()
+          handler();
         }, 50);    
       }, 200);
     }
@@ -39,7 +39,7 @@ app.directive('longpress', (el, binding, vNode) => {
 
   // Cancel Timeout
   let cancel = () => {
-  // Check if timer has a value or not
+    // Check if timer has a value or not
     if (pressTimer !== null) {
       clearTimeout(pressTimer);
       clearInterval(pressInterval);
@@ -63,4 +63,4 @@ app.directive('longpress', (el, binding, vNode) => {
   el.addEventListener("touchcancel", cancel);
 });
 
-app.mount('#app')
+app.mount('#app');

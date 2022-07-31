@@ -1,9 +1,9 @@
 <template>
   <div class="timer">
     <div class="timer__wrapper">
-      <TimerInput v-model="minutes" class="input timer__minutes" :max="max" />
+      <TimerInput v-model="minutes" class="input timer__minutes" :max="max" :disabled="isRunning" />
       <TimerButtons @add="addMinutes" @substract="substractMinutes" />
-      <TimerInput v-model="seconds" class="input timer__seconds" :max="max" />
+      <TimerInput v-model="seconds" class="input timer__seconds" :max="max" :disabled="isRunning"/>
       <TimerButtons @add="addSeconds" @substract="substractSeconds" />
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
@@ -106,7 +106,7 @@ export default {
 						clearInterval(this.timer);
 						this.reset();
 					}
-				}, 1000)
+				}, 1000);
 			}
     },
     stop() {
