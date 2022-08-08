@@ -15,9 +15,13 @@
 <script>
 import TimerInput from './TimerInput.vue';
 import TimerButtons from './TimerButtons.vue';
+import timerButtons from '../mixins/timerButtons';
 
 export default {
   name: 'Timer',
+  mixins: [
+    timerButtons
+  ],
   data() {
     return {
       hoursData: 0,
@@ -91,34 +95,6 @@ export default {
       }
       this.startTime = (this.minutesData * 60 + this.secondsData);
     },
-    calculateTime(callback) {
-      if (!this.isRunning) {
-        this.setMinutesAndSecondsIfPaused();
-        callback();
-        this.setTime();
-        this.setStartProgressTime();
-      }
-    },
-    addMinutes() {
-      if (this.minutesData < this.max) {
-        this.calculateTime(() => { this.minutesData++; });
-      }
-    },
-    substractMinutes() {
-      if (this.minutesData > 0) {
-        this.calculateTime(() => { this.minutesData--; });
-      }
-    },
-    addSeconds() {
-      if (this.secondsData < this.max) {
-        this.calculateTime(() => { this.secondsData++; });
-      }
-    },
-    substractSeconds() {
-      if (this.secondsData > 0) {
-        this.calculateTime(() => { this.secondsData--; });
-      }
-    },
 
     start() {
       this.setTime();
@@ -176,12 +152,11 @@ export default {
     position: relative;
     display: flex;
     padding: 55px 20px;
-    box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
+    box-shadow: var(--timer-box-shadow);
     border-radius: 25px;
     margin: 0 10vw;
 
-    &:before,
-    &:after {
+    &:before {
       position: absolute;
       display: var(--display-pseudo-elem);
       content: '';
@@ -194,14 +169,14 @@ export default {
       height: 10%;
       background: rgb(235, 239, 246);
       border-radius: 25px;
-      width: calc(var(--progress-value) - 11%);
-      box-shadow: 9.91px 9.91px 15px #D6D9E0, -9.91px -9.91px 15px #FFFFFF;
+      width: calc(var(--progress-value) - 11%); // TODO fix width at the end of timer counting
+      box-shadow: var(--progress-box-shadow);
       min-width: 0;
     }
   }
 
   &__start {
-    border: 2px solid #eee;
+    border: 2px solid transparent;
     border-radius: 5px;
     padding: 5px 10px;
     margin: 10px 0;

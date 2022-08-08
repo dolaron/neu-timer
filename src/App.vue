@@ -26,7 +26,7 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background-color: rgb(238, 240, 244);
+  background-color: var(--background-color-primary);
 }
 
 #app {

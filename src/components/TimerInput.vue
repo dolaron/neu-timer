@@ -62,9 +62,9 @@ input.timer-input {
   font-family: 'Poppins', sans-serif;
   font-size: calc(60vw / 3);
   // font-size: 30ch;
-  color: rgb(234, 238, 247);
-  text-shadow: -8px -8px 12px rgba(255,255,255,0.4), 8px 8px 12px rgba(0,0,0,0.08);
-  caret-color: #262626;
+  color: var(--timer-input-color);
+  text-shadow: var(--timer-input-text-shadow);
+  caret-color: var(--timer-input-caret-color);
   outline: none;
   width: 98%; // !! makes input width flexible !! 
   padding: 1%;  // !! makes input width flexible !!
@@ -80,8 +80,8 @@ input.timer-input {
   }
 
   &::selection {
-    color: gainsboro;
-    background: beige;
+    color: var(--timer-input-selection-color);
+    background: var(--timer-input-selection-background);
     width: calc(100% + 10%);
   }
 }

@@ -34,7 +34,7 @@ export default {
   &__substract {
     position: relative;
     text-align: center;
-    color: #d6d8dc;
+    color: var(--timer-button-color);
     font-weight: 600;
     font-size: 25px;
     border: 0;
@@ -47,11 +47,11 @@ export default {
     &:before,
     &:after {
       position: absolute;
+      content: '';
       display: flex;
       justify-content: center;
       align-items: center;
-      content: '';
-      color: #d6d8dc;
+      color: var(--timer-button-color);
       top: 0;
       left: 0;
       width: 100%;
@@ -62,16 +62,14 @@ export default {
 
     &:before {
       opacity: 1;
-      background: linear-gradient(145deg, #ffffff, #d6d8dc);
-      box-shadow:  5px 5px 10px #cacccf,
-                  -5px -5px 10px #ffffff;
+      background: var(--timer-button-before-background);
+      box-shadow:  var(--timer-button-before-box-shadow);
     }
 
     &:after {
       opacity: 0;
-      background: linear-gradient(145deg, #cacccf 10%, #d6d8dc 15%, #faf9f9 80%);
-      box-shadow:  -5px -5px 10px #cacccf,
-                    5px 5px 10px #ffffff;
+      background: var(--timer-button-after-background);
+      box-shadow:  var(--timer-button-after-box-shadow);
     }
 
     &:hover {
@@ -81,7 +79,7 @@ export default {
 
       &:after {
         opacity: 1;
-        color: #b4b6b9;
+        color: var(--timer-button-after-color);
       }
     }
   }
