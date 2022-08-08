@@ -1,4 +1,7 @@
 <template>
+  <button class="toggle-theme" @click="toggleTheme">
+    {{ userTheme === 'light-theme' ? 'Dark Theme' : 'Light Theme' }}
+  </button>
   <Timer/>
 </template>
 
@@ -9,7 +12,42 @@ export default {
   name: 'App',
   components: {
     Timer
-  }
+  },
+  data() {
+    return {
+      userTheme: 'light-theme'
+    }
+  },
+  methods: {
+    setTheme(theme) {
+      localStorage.setItem('neu-timer-theme', theme);
+      this.userTheme = theme;
+      document.documentElement.className = theme;
+    },
+    getTheme() {
+      return localStorage.getItem('neu-timer-theme');
+    },
+    toggleTheme() {
+      const activeTheme = localStorage.getItem('neu-timer-theme');
+      if (activeTheme === 'light-theme') {
+        this.setTheme('dark-theme');
+      } else {
+        this.setTheme('light-theme');
+      }
+    },
+    getMediaPreference() {
+      const hasDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (hasDarkPreference) {
+        return 'dark-theme';
+      } else {
+        return 'light-theme';
+      }
+    }
+  },
+  mounted() {
+    const initUserTheme = this.getMediaPreference();
+    this.setTheme(initUserTheme);
+  },
 }
 </script>
 
@@ -30,7 +68,16 @@ body {
 }
 
 #app {
+  position: relative;
   display: flex;
   height: 100%;
+}
+
+.toggle-theme {
+  position: absolute;
+  display: flex;
+  flex: 0;
+  top: 0;
+  margin: 0 auto;
 }
 </style>

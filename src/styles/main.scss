@@ -2,6 +2,7 @@
   --background-color-primary: rgb(238, 240, 244);
 
   --timer-box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
+
   --progress-box-shadow: 9.91px 9.91px 15px #D6D9E0, -9.91px -9.91px 15px #FFFFFF;
   
   --timer-input-color: rgb(234, 238, 247);
@@ -16,4 +17,10 @@
   --timer-button-after-background: linear-gradient(145deg, #cacccf 10%, var(--timer-button-color) 15%, #faf9f9 80%);
   --timer-button-before-box-shadow: 5px 5px 10px #cacccf, -5px -5px 10px #ffffff; 
   --timer-button-after-box-shadow: -5px -5px 10px #cacccf, 5px 5px 10px #ffffff;
+}
+
+:root.dark-theme {
+  --background-color-primary: #333; // #55417b
+  --timer-box-shadow: -10px -10px 25px -1px rgba(250, 250, 250, 0.13) inset, 10px 10px 24px -1px rgba(0,0,0, 0.40) inset;
+  --timer-input-color: rgb(133, 133, 133);
 }
