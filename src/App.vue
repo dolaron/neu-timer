@@ -1,8 +1,8 @@
 <template>
   <button class="toggle-theme" @click="toggleTheme">
-    {{ userTheme === 'light-theme' ? 'Dark Theme' : 'Light Theme' }}
+    {{userTheme === 'light-theme' ? 'Dark Theme' : 'Light Theme'}}
   </button>
-  <Timer/>
+  <Timer />
 </template>
 
 <script>

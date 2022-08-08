@@ -156,7 +156,8 @@ export default {
     border-radius: 25px;
     margin: 0 10vw;
 
-    &:before {
+    &:before,
+    &:after {
       position: absolute;
       display: var(--display-pseudo-elem);
       content: '';
@@ -167,7 +168,7 @@ export default {
       bottom: 25px;
       left: 5%;
       height: 10%;
-      background: rgb(235, 239, 246);
+      background-color: var(--progress-background-color);
       border-radius: 25px;
       width: calc(var(--progress-value) - 11%); // TODO fix width at the end of timer counting
       box-shadow: var(--progress-box-shadow);

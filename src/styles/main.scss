@@ -3,6 +3,7 @@
 
   --timer-box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
 
+  --progress-background-color: rgb(235, 239, 246);
   --progress-box-shadow: 9.91px 9.91px 15px #D6D9E0, -9.91px -9.91px 15px #FFFFFF;
   
   --timer-input-color: rgb(234, 238, 247);
@@ -21,6 +22,12 @@
 
 :root.dark-theme {
   --background-color-primary: #333; // #55417b
-  --timer-box-shadow: -10px -10px 25px -1px rgba(250, 250, 250, 0.13) inset, 10px 10px 24px -1px rgba(0,0,0, 0.40) inset;
-  --timer-input-color: rgb(133, 133, 133);
+
+  --timer-box-shadow: -8px -6px 12px -1px rgba(250, 250, 250, 0.13) inset, 8px 6px 20px -1px rgba(0,0,0, 0.40) inset;
+
+  --progress-background-color: #37393b;
+  --progress-box-shadow: -4px -4px 6px rgba(84, 84, 84, 0.787), 5px 5px 4px rgba(63, 63, 63, 0.08);
+
+  --timer-input-color: #37393b ;
+  --timer-input-text-shadow: -4px -4px 6px rgba(84, 84, 84, 0.787), 4px 4px 6px rgba(63, 63, 63, 0.08);
 }
