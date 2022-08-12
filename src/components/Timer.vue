@@ -161,6 +161,7 @@ export default {
       position: absolute;
       display: var(--display-pseudo-elem);
       content: '';
+      border-radius: 5px;
       transition: width 0.2s ease-out; // TODO change from width to scale or something else
     }
 
@@ -169,7 +170,6 @@ export default {
       left: 5%;
       height: 10%;
       background-color: var(--progress-background-color);
-      border-radius: 25px;
       width: calc(var(--progress-value) - 11%); // TODO fix width at the end of timer counting
       box-shadow: var(--progress-box-shadow);
       min-width: 0;

@@ -18,16 +18,32 @@
   --timer-button-after-background: linear-gradient(145deg, #cacccf 10%, var(--timer-button-color) 15%, #faf9f9 80%);
   --timer-button-before-box-shadow: 5px 5px 10px #cacccf, -5px -5px 10px #ffffff; 
   --timer-button-after-box-shadow: -5px -5px 10px #cacccf, 5px 5px 10px #ffffff;
+
+
+  --timer-button-border-radius: 25px;
 }
 
 :root.dark-theme {
-  --background-color-primary: #333; // #55417b
+  // --background-color-primary: #333; // #55417b
+  --background-color-primary: #092E20;
 
-  --timer-box-shadow: -8px -6px 12px -1px rgba(250, 250, 250, 0.13) inset, 8px 6px 20px -1px rgba(0,0,0, 0.40) inset;
+  --timer-box-shadow: -8px -6px 11px -1px #124731 inset, 8px 6px 20px -1px rgba(0,0,0, 0.40) inset;
 
-  --progress-background-color: #37393b;
-  --progress-box-shadow: -4px -4px 6px rgba(84, 84, 84, 0.787), 5px 5px 4px rgba(63, 63, 63, 0.08);
+  --progress-background-color: #092E20;
+  --progress-box-shadow: -4px -4px 6px #124731, 5px 5px 6px rgba(0,0,0, 0.40);
 
-  --timer-input-color: #37393b ;
-  --timer-input-text-shadow: -4px -4px 6px rgba(84, 84, 84, 0.787), 4px 4px 6px rgba(63, 63, 63, 0.08);
+  --timer-input-selection-color: #498f72;
+  --timer-input-selection-background: #12473a;
+
+  --timer-input-color: #0e3b29;
+  --timer-input-text-shadow: -4px -4px 6px #124731, 4px 4px 6px rgba(63, 63, 63, 0.08);
+  --timer-button-color: #0e3b29;
+  --timer-button-after-color: #124731;
+  --timer-button-before-background: linear-gradient(145deg, #0f3f2c, #07271a);
+  --timer-button-after-background: linear-gradient(145deg, #07271a 15%, #0e3d2a 80%);
+  --timer-button-before-box-shadow: var(--progress-box-shadow);
+  --timer-button-after-box-shadow: -5px -5px 10px rgba(0,0,0, 0.40), 5px 5px 10px #124731;
+
+  --timer-button-background: --timer-button-before-background;
+  --timer-button-background-hover: --timer-button-after-background;
 }

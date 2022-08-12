@@ -37,12 +37,17 @@ export default {
     color: var(--timer-button-color);
     font-weight: 600;
     font-size: 25px;
-    border: 0;
+    border: none;
     height: 50px;
     width: 50px;
-    border-radius: 15px;
+    border-radius: var(--timer-button-border-radius);
     transition: background-color 0.2s, box-shadow 0.2s;
+    background: var(--timer-button-background);
     cursor: pointer;
+
+    &:hover {
+      background: var(--timer-button-background-hover);
+    }
 
     &:before,
     &:after {
@@ -56,8 +61,9 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
+      border-radius: var(--timer-button-border-radius);
       transition: opacity 0.3s ease, color 0.3s ease;
+      border: none;
     }
 
     &:before {
