@@ -45,7 +45,11 @@ export default {
     }
   },
   mounted() {
-    const initUserTheme = this.getMediaPreference();
+    let initUserTheme = this.getMediaPreference();
+    let localStorageTheme = localStorage.getItem('neu-timer-theme')
+    if (localStorageTheme) {
+      initUserTheme = localStorageTheme;
+    }
     this.setTheme(initUserTheme);
   },
 }

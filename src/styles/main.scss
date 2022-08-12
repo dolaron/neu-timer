@@ -1,6 +1,7 @@
 :root {
   --timer-button-border-radius: 25px; // not theme mode relatable
   --progress-border-radius: 25px; // not theme mode relatable
+  --timer-input-shape: block;
 
 
   --background-color-primary: rgb(238, 240, 244);
@@ -35,8 +36,9 @@
 
   --timer-input-selection-color: #498f72;
   --timer-input-selection-background: #12473a;
+  --timer-input-caret-color: #12473a;
 
-  --timer-input-color: #0e3b29;
+  --timer-input-color: #0d3827e4;
   --timer-input-text-shadow: -4px -4px 6px #124731, 4px 4px 6px rgba(63, 63, 63, 0.08);
   --timer-button-color: #0e3b29;
   --timer-button-after-color: #124731;

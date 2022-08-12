@@ -57,6 +57,7 @@ export default {
 input.timer-input {
   display: flex;
   border: 0;
+  line-height: 1.25rem;
   text-align: center;
   background: transparent;
   font-family: 'Poppins', sans-serif;
@@ -65,9 +66,10 @@ input.timer-input {
   color: var(--timer-input-color);
   text-shadow: var(--timer-input-text-shadow);
   caret-color: var(--timer-input-caret-color);
+  caret-shape: var(--timer-input-caret-shape);
   outline: none;
   width: 98%; // !! makes input width flexible !! 
-  padding: 1%;  // !! makes input width flexible !!
+  padding: 2%;  // !! makes input width flexible !!
   min-width: min-content;
   border-radius: 10px;
   z-index: 100;

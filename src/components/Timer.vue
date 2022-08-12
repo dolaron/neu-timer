@@ -151,7 +151,7 @@ export default {
   &__wrapper {
     position: relative;
     display: flex;
-    padding: 55px 20px;
+    padding: 65px 20px;
     box-shadow: var(--timer-box-shadow);
     border-radius: 25px;
     margin: 0 10vw;
