@@ -1,4 +1,8 @@
 :root {
+  --timer-button-border-radius: 25px; // not theme mode relatable
+  --progress-border-radius: 25px; // not theme mode relatable
+
+
   --background-color-primary: rgb(238, 240, 244);
 
   --timer-box-shadow: rgb(217 218 222) 9.91px 9.91px 15px inset, rgb(255 255 255) -9.91px -9.91px 15px inset;
@@ -18,9 +22,6 @@
   --timer-button-after-background: linear-gradient(145deg, #cacccf 10%, var(--timer-button-color) 15%, #faf9f9 80%);
   --timer-button-before-box-shadow: 5px 5px 10px #cacccf, -5px -5px 10px #ffffff; 
   --timer-button-after-box-shadow: -5px -5px 10px #cacccf, 5px 5px 10px #ffffff;
-
-
-  --timer-button-border-radius: 25px;
 }
 
 :root.dark-theme {

@@ -161,7 +161,7 @@ export default {
       position: absolute;
       display: var(--display-pseudo-elem);
       content: '';
-      border-radius: 5px;
+      border-radius: var(--progress-border-radius);
       transition: width 0.2s ease-out; // TODO change from width to scale or something else
     }
 
