@@ -65,8 +65,11 @@ export default {
     },
 
     progress() {
-      if (this.time) {
+      debugger;
+      if (this.time && this.isRunning) {
         return (this.time * 100) / this.startTime;
+      } else if (this.time && !this.isRunning) {
+        return (this.time * 100) / (this.max * 60 + this.secondsData)
       }
       return 0;
     },
@@ -168,13 +171,14 @@ export default {
 
   &__progress {
     position: relative;
-    width: 100%;
+    width: 95%;
     min-height: 25px;
     
     &:before,
     &:after {
       position: absolute;
       top: 0;
+      left: 2%;
       display: var(--display-pseudo-elem);
       content: '';
       border-radius: var(--progress-border-radius);
@@ -188,13 +192,11 @@ export default {
 
     &::before {
       bottom: 25px;
-      // left: 5%;
       background-color: var(--progress-background-color);
       width: calc(var(--progress-value)); // TODO fix width at the end of timer counting
       box-shadow: var(--progress-box-shadow);
       min-width: 0;
     }
-    
   }
 
   &__start {
