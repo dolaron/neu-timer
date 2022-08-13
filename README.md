@@ -24,6 +24,8 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### More accesible Neumorphism
+https://medium.com/@xurxe/accessible-neumorphism-soft-ui-992286900bfa
 
 ### Delta Timer
 https://stackoverflow.com/questions/11624078/repeating-settimeout

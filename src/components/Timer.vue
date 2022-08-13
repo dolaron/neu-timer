@@ -142,6 +142,10 @@ export default {
       this.seconds = 0;
 		}
   },
+  mounted() {
+    this.setTime();
+    this.setStartProgressTime();
+  },
   components: {
     TimerInput,
     TimerButtons
@@ -179,14 +183,14 @@ export default {
     
     &:before,
     &:after {
+      display: var(--display-pseudo-elem);
       position: absolute;
+      content: '';
       top: 0;
       left: 2%;
-      display: var(--display-pseudo-elem);
-      content: '';
+      height: 25px;
       border-radius: var(--progress-border-radius);
       transition: width 0.2s ease-out; // TODO change from width to scale or something else
-      height: 25px;
 
       @media (min-width: 600px) {
         min-height: 35px;
@@ -211,13 +215,24 @@ export default {
   &__start,
   &__pause,
   &__reset {
-    background: var(--progress-background-color);
-    box-shadow: var(--progress-box-shadow);
-    border: 2px solid transparent;
-    border-radius: 10px;
+    border: none;
+    border-radius: 11px;
     padding: 15px 35px;
     margin: 25px 0 0 0;
-    color: #eee;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    color: var(--action-button-color);
+    transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s, color 0.2s;
+    box-shadow: var(--action-button-box-shadow);
+    background: var(--action-button-background);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--action-button-color-hover);
+      box-shadow: var(--action-button-box-shadow-hover);
+      background: var(--action-button-background-hover);
+      border-radius: 15px;
+    }
   }
 }
 </style>

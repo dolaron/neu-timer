@@ -1,7 +1,8 @@
 :root {
   --timer-button-border-radius: 25px; // not theme mode relatable
   --progress-border-radius: 25px; // not theme mode relatable
-  --timer-input-shape: block;
+  --timer-input-shape: block; // not theme mode relatable
+  --font-family: 'Poppins', sans-serif;
 
 
   --background-color-primary: rgb(238, 240, 244);
@@ -49,4 +50,14 @@
 
   --timer-button-background: --timer-button-before-background;
   --timer-button-background-hover: --timer-button-after-background;
+
+  --timer-button-box-shadow: var(--progress-box-shadow);
+  --timer-button-box-shadow-hover: -4px -4px 6px rgba(0,0,0, 0.40), 5px 5px 6px #124731;
+
+  --action-button-color: #498f72;
+  --action-button-color-hover: #2f6d53;
+  --action-button-box-shadow: -3px -3px 5px #124731, 3px 3px 4px rgba(0,0,0, 0.40);
+  --action-button-background: linear-gradient(164deg, #0e3d2a 20%, #092c1e 80%);
+  --action-button-box-shadow-hover: -2px -2px 4px rgba(0,0,0, 0.40), 3px 3px 5px #124731e1;
+  --action-button-background-hover: linear-gradient(166deg, #051f14 12%, #072418 35%, #0e3d2a 80%);
 }

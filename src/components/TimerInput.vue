@@ -60,7 +60,7 @@ input.timer-input {
   line-height: 1.25rem;
   text-align: center;
   background: transparent;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family);
   font-size: calc(60vw / 3);
   // font-size: 30ch;
   color: var(--timer-input-color);
