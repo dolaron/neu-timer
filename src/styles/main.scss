@@ -19,11 +19,18 @@
   --timer-input-selection-background: beige;
 
   --timer-button-color: #d6d8dc;
-  --timer-button-after-color: #b4b6b9;
+  --timer-button-after-color: #bcbec0;
   --timer-button-before-background: linear-gradient(145deg, #ffffff, var(--timer-button-color));
   --timer-button-after-background: linear-gradient(145deg, #cacccf 10%, var(--timer-button-color) 15%, #faf9f9 80%);
   --timer-button-before-box-shadow: 5px 5px 10px #cacccf, -5px -5px 10px #ffffff; 
-  --timer-button-after-box-shadow: -5px -5px 10px #cacccf, 5px 5px 10px #ffffff;
+  --timer-button-after-box-shadow: -3px -3px 7px #cacccf, 3px 3px 7px #ffffff;
+
+  --action-button-color: #c8c9ca;
+  --action-button-color-hover: #959697;
+  --action-button-box-shadow: var(--timer-button-before-box-shadow);
+  --action-button-background: linear-gradient(165deg, #ffffff, var(--timer-button-color));
+  --action-button-box-shadow-hover: var(--timer-button-after-box-shadow);
+  --action-button-background-hover: linear-gradient(165deg, #cacccf 7%, var(--timer-button-color) 25%, #faf9f9 80%);;
 }
 
 :root.dark-theme {
