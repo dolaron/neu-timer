@@ -4,14 +4,16 @@
       <div class="timer__elems">
         <TimerInput v-model="minutes" :max="max" :disabled="isRunning" />
         <TimerButtons @add="addMinutes" @substract="substractMinutes" />
-        <TimerInput v-model="seconds" :max="max" :disabled="isRunning"/>
+        <TimerInput v-model="seconds" :max="max" :disabled="isRunning" />
         <TimerButtons @add="addSeconds" @substract="substractSeconds" />
       </div>
       <div class="timer__progress"></div>
     </div>
-    <button class="timer__start" @click="start">Start Timer</button>
-    <button class="timer__pause" @click="pause">Pause Timer</button>
-    <button class="timer__reset" @click="reset">Reset Timer</button>
+    <div class="timer__actions">
+      <button class="timer__start" @click="start">Start Timer</button>
+      <button class="timer__pause" @click="pause">Pause Timer</button>
+      <button class="timer__reset" @click="reset">Reset Timer</button>
+    </div>
   </div>
 </template>
 
@@ -50,6 +52,7 @@ export default {
       },
       set(value) {
         this.minutesData = parseInt(value);
+        this.setTime();
       }
     },
     seconds: {
@@ -61,11 +64,11 @@ export default {
       },
       set(value) {
         this.secondsData = parseInt(value);
+        this.setTime();
       }
     },
 
     progress() {
-      debugger;
       if (this.time && this.isRunning) {
         return (this.time * 100) / this.startTime;
       } else if (this.time && !this.isRunning) {
@@ -199,11 +202,22 @@ export default {
     }
   }
 
-  &__start {
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
+
+  &__start,
+  &__pause,
+  &__reset {
+    background: var(--progress-background-color);
+    box-shadow: var(--progress-box-shadow);
     border: 2px solid transparent;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 10px 0;
+    border-radius: 10px;
+    padding: 15px 35px;
+    margin: 25px 0 0 0;
+    color: #eee;
   }
 }
 </style>

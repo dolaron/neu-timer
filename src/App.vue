@@ -2,15 +2,18 @@
   <button class="toggle-theme" @click="toggleTheme">
     {{userTheme === 'light-theme' ? 'Dark Theme' : 'Light Theme'}}
   </button>
+  <ThemeToggle />
   <Timer />
 </template>
 
 <script>
+import ThemeToggle from './components/ThemeToggle.vue'
 import Timer from './components/Timer.vue'
 
 export default {
   name: 'App',
   components: {
+    ThemeToggle,
     Timer
   },
   data() {
