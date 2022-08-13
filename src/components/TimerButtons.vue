@@ -41,8 +41,8 @@ export default {
     height: 50px;
     width: 50px;
     border-radius: var(--timer-button-border-radius);
-    transition: background-color 0.2s, box-shadow 0.2s;
     background: var(--timer-button-background);
+    transition: background-color 0.2s, box-shadow 0.2s, border-radius 0.2s;
     cursor: pointer;
 
     &:hover {
@@ -62,7 +62,7 @@ export default {
       width: 100%;
       height: 100%;
       border-radius: var(--timer-button-border-radius);
-      transition: opacity 0.3s ease, color 0.3s ease;
+      transition: opacity 0.2s ease, color 0.2s ease, opacity 0.2s;
       border: none;
     }
 

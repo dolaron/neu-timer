@@ -73,6 +73,7 @@ input.timer-input {
   min-width: min-content;
   border-radius: 10px;
   z-index: 100;
+  transition: text-shadow 0.2s, color 0.2s;
 
   &[type=number] {
     &::-webkit-outer-spin-button,

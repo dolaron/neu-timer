@@ -71,6 +71,7 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
+  transition: background-color 0.2s;
   background-color: var(--background-color-primary);
 }
 
