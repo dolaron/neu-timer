@@ -1,10 +1,13 @@
 <template>
   <div class="timer" :style="progressStyle">
     <div class="timer__wrapper" :data-width="progress">
-      <TimerInput v-model="minutes" :max="max" :disabled="isRunning" />
-      <TimerButtons @add="addMinutes" @substract="substractMinutes" />
-      <TimerInput v-model="seconds" :max="max" :disabled="isRunning"/>
-      <TimerButtons @add="addSeconds" @substract="substractSeconds" />
+      <div class="timer__elems">
+        <TimerInput v-model="minutes" :max="max" :disabled="isRunning" />
+        <TimerButtons @add="addMinutes" @substract="substractMinutes" />
+        <TimerInput v-model="seconds" :max="max" :disabled="isRunning"/>
+        <TimerButtons @add="addSeconds" @substract="substractSeconds" />
+      </div>
+      <div class="timer__progress"></div>
     </div>
     <button class="timer__start" @click="start">Start Timer</button>
     <button class="timer__pause" @click="pause">Pause Timer</button>
@@ -151,29 +154,47 @@ export default {
   &__wrapper {
     position: relative;
     display: flex;
-    padding: 65px 20px;
+    flex-direction: column;
+    padding: 65px 35px;
     box-shadow: var(--timer-box-shadow);
     border-radius: 25px;
     margin: 0 10vw;
+  }
 
+  &__elems {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__progress {
+    position: relative;
+    width: 100%;
+    min-height: 25px;
+    
     &:before,
     &:after {
       position: absolute;
+      top: 0;
       display: var(--display-pseudo-elem);
       content: '';
       border-radius: var(--progress-border-radius);
       transition: width 0.2s ease-out; // TODO change from width to scale or something else
+      height: 25px;
+
+      @media (min-width: 600px) {
+        min-height: 35px;
+      }
     }
 
     &::before {
       bottom: 25px;
-      left: 5%;
-      height: 10%;
+      // left: 5%;
       background-color: var(--progress-background-color);
-      width: calc(var(--progress-value) - 11%); // TODO fix width at the end of timer counting
+      width: calc(var(--progress-value)); // TODO fix width at the end of timer counting
       box-shadow: var(--progress-box-shadow);
       min-width: 0;
     }
+    
   }
 
   &__start {
